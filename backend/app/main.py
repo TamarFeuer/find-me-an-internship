@@ -1,19 +1,20 @@
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 
+from app.cv import extract_pdf_text
 from app.models import Match
 from app.adzuna import fetch_jobs
-from app.scoring import load_cv, rank_jobs
+from app.scoring import rank_jobs
 
 app = FastAPI(title="find-me-an-internship")
 
 
-@app.get("/matches", response_model=list[Match])
-def get_matches():
-	"""Fetch jobs, score each against the CV, return them ranked best-match first."""
-	cv_text = load_cv()
+@app.post("/matches", response_model=list[Match])
+async def get_matches(cv: UploadFile = File(...)):
+	"""Score an uploaded CV (PDF) against live job listings, ranked best-match first."""
+	cv_text = extract_pdf_text(await cv.read())
 	jobs = fetch_jobs().get("results", [])
 	ranked = rank_jobs(cv_text, jobs)
 

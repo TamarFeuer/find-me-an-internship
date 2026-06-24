@@ -11,15 +11,32 @@ interface Match {
 const button = document.getElementById("find-btn") as HTMLButtonElement;
 const statusEl = document.getElementById("status") as HTMLParagraphElement;
 const results = document.getElementById("results") as HTMLUListElement;
+const fileInput = document.getElementById("cv-file") as HTMLInputElement;
+const fileName = document.getElementById("file-name") as HTMLSpanElement;
+
+// Show the chosen file's name next to the upload button.
+fileInput.addEventListener("change", () => {
+  fileName.textContent = fileInput.files?.[0]?.name ?? "";
+});
 
 button.addEventListener("click", async () => {
+  // The user must pick a PDF before we can score anything.
+  const file = fileInput.files?.[0];
+  if (!file) {
+    statusEl.textContent = "Please choose a PDF CV first.";
+    return;
+  }
+
   // Disable the button and show progress while the (slow) scoring runs.
   button.disabled = true;
   statusEl.textContent = "Scoring jobs… this takes a few seconds.";
   results.innerHTML = "";
 
   try {
-    const response = await fetch("/matches");
+    // Send the PDF as multipart form data; the field name "cv" matches the backend.
+    const formData = new FormData();
+    formData.append("cv", file);
+    const response = await fetch("/matches", { method: "POST", body: formData });
     if (!response.ok) throw new Error(`Server returned ${response.status}`);
     const matches: Match[] = await response.json();
 

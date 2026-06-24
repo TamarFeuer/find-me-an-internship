@@ -3,3 +3,5 @@ python-dotenv
 anthropic
 fastapi
 uvicorn[standard]
+pypdf
+python-multipart

@@ -12,16 +12,30 @@ body {
 h1 { margin-bottom: 0.25rem; }
 .intro { color: #666; margin-top: 0; }
 
-button {
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Shared sizing so the upload label and the button match exactly. */
+button, .upload-label {
   font-size: 1rem;
   padding: 0.6rem 1.2rem;
-  border: none;
+  border: 1px solid #2a7;
   border-radius: 6px;
-  background: #2a7;
-  color: white;
+  line-height: 1.2;
   cursor: pointer;
 }
+
+button { background: #2a7; color: white; }
 button:disabled { opacity: 0.6; cursor: default; }
+
+.upload-label { background: white; color: #2a7; }
+.upload-label:hover { background: #f0faf5; }
+
+.file-name { display: block; margin-top: 0.5rem; color: #666; }
 
 #status { color: #666; min-height: 1.5rem; }
 

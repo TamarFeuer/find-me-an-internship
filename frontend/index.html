@@ -9,8 +9,13 @@
 <body>
   <main>
     <h1>Find Me an Internship</h1>
-    <p class="intro">Score live job listings against the CV and rank them by fit.</p>
-    <button id="find-btn">Find matches</button>
+    <p class="intro">Score live job listings against your CV and rank them by fit.</p>
+    <div class="controls">
+      <label for="cv-file" class="upload-label">Upload your CV as PDF</label>
+      <input type="file" id="cv-file" accept="application/pdf" hidden>
+      <button id="find-btn">Find matches</button>
+    </div>
+    <span id="file-name" class="file-name"></span>
     <p id="status"></p>
     <ul id="results"></ul>
   </main>
