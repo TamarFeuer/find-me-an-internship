@@ -76,7 +76,7 @@ def rank_jobs(cv_text, jobs):
 
 def main():
     # Local import to avoid a circular dependency at module load time.
-    from app.services.adzuna import fetch_jobs
+    from app.adzuna import fetch_jobs
 
     cv_text = load_cv()
     jobs = fetch_jobs().get("results", [])
@@ -87,6 +87,6 @@ def main():
         print(f"      {match.explanation}")
 
 
-# Run with:  python -m app.services.scoring   (from the project root)
+# Run with:  python -m app.scoring   (from the project root)
 if __name__ == "__main__":
     main()

@@ -1,3 +1,5 @@
 requests
 python-dotenv
 anthropic
+fastapi
+uvicorn[standard]
