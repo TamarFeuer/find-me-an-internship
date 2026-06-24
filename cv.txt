@@ -1,0 +1,81 @@
+TAMAR FEUER
+Software Engineer | Full Stack Developer | Former Psychologist
+tamar2603@gmail.com | +31 643260367 | Amsterdam, NL
+linkedin.com/in/tamarfeuer | github.com/TamarFeuer
+
+PROFESSIONAL SUMMARY
+Career-changer with a rare combination of technical depth and human insight.
+Full-stack software engineer, BSc graduate of Codam College (42 Network), with a
+Master's in Psychology and 15+ years of entrepreneurial experience. Skilled in
+full-stack development (Django, JavaScript, C/C++, C#), real-time systems, and
+agile project management. Genuinely excited about machine learning, data, patterns
+and AI.
+
+TECHNICAL SKILLS
+Languages: C, C++, C#, TypeScript, JavaScript, Python, SQL, HTML, CSS
+Frameworks & Tools: Django, Django Channels, Angular, NgRx (state management),
+  FastAPI, PostgreSQL, Docker, Nginx, Tailwind CSS, Linux, VMs, Git, Unity, Pandas
+Methods: Agile, Scrum, LeanIT, Project Management
+
+PROJECTS
+Transcendence: Full-Stack Real-Time Multiplayer Game | Codam College | 2026
+- Built the chat module full-stack: vanilla JavaScript and Tailwind CSS frontend,
+  Django Channels WebSockets for global chat and direct messages, and REST APIs
+  for game invites and user blocking
+- Led a 5-person team as project manager: maintained backlog, ran sprints,
+  enforced PR review workflow, and held weekly team meetings
+- Deployed via Docker and Nginx (Vite for development), with public tunnel via
+  ngrok for evaluation
+
+Weather API | C# & TypeScript | in progress
+- Building a weather API assigned by my mentor Emrah Ozguner (Software Developer,
+  Van Lanschot Kempen). Implementing backend in C# and client in TypeScript,
+  applying Clean Architecture principles with separated business logic, data, and
+  controller layers, to be extended with unit and integration testing
+
+Webserv: HTTP Server | Codam College
+- Collaborated in a team of three to implement a fully functional HTTP server in
+  C++, handling requests, responses, and connection management
+
+EDUCATION
+- BSc Software Engineering | Codam College (42 Network), Amsterdam | Graduated May 2026
+- MSc Psychology, cum laude | Vrije Universiteit Amsterdam
+- BSc Psychology & Special Education, cum laude | Tel Aviv University
+
+MENTORSHIP
+Software Engineering Mentorship | Emrah Ozguner, Software Developer at Van Lanschot Kempen | 2026
+- 1:1 structured mentorship covering the Software Life Cycle, Clean Architecture &
+  Modularity, Testability & Quality Assurance, Team Culture, and Enterprise
+  Software Patterns & SOLID Principles, concluding with a case study analysis and
+  presentation
+Product Management Mentorship | Silvia Longo, Senior Product Manager at TomTom, Amsterdam | 2024
+
+EXTRACURRICULAR & TRAINING
+Kaggle | Intro to Machine Learning | April 2026
+- Decision trees, model validation, underfitting/overfitting, and random forests in Python
+Kaggle | Pandas | April 2026
+- Data manipulation and analysis using Pandas: DataFrames, indexing, grouping, aggregation
+Kaggle | Data Visualization | April 2026
+- Data visualisation using Seaborn and Matplotlib in Python
+LeanIT Workshop | Codam College, Eraneos (Niels Loader)
+- Applied Lean principles to IT service management and process improvement
+Game Develop{Her} | Unity & C# Course | gamedevelopher.com | 2024
+- 6-month game development programme (online, women in tech initiative) covering Unity and C#
+
+WORK EXPERIENCE
+Workshop Facilitator | Codam x Microsoft Dream Space | OBA Next | 2026
+- Designed and delivered coding workshop curricula for teenagers, in collaboration
+  with Microsoft Dream Space
+CAT (Candidate Assistant) | Codam College
+- Supported incoming students during the Piscine (Codam's intensive selection
+  programme), guiding candidates by asking the right questions rather than
+  providing answers, fostering independent problem-solving
+Founder & Managing Director | Intercom Systems Import Business | 2007 - 2022
+- Founded and ran an import and distribution business for 15 years; managed an
+  exclusive supplier partnership, logistics, sales, and P&L
+Psychologist | Policlinic Ashdod | 2001 - 2007
+- Provided psychological assessment and therapeutic intervention, with a focus on
+  cognitive and neuropsychological evaluation, studying how the brain recognises
+  patterns, processes information, and adapts to change
+- Researched pattern recognition and cognitive flexibility in patients with
+  schizophrenia using the Wisconsin Card Sorting Test (WCST)
