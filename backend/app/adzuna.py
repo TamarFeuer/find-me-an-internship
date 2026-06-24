@@ -6,18 +6,18 @@ from dotenv import load_dotenv
 # Read the variables from the .env file into the environment so os.getenv() can find them.
 load_dotenv()
 
-# Search settings sent to Adzuna. app_id/app_key authenticate us; the rest define the query.
-params = {
-	'app_id': os.getenv('ADZUNA_APP_ID'),       # credentials, kept out of the code in .env
-	'app_key': os.getenv('ADZUNA_APP_KEY'),
-	'what': 'software developer',               # job title to search for
-	'what_exclude': 'senior',                   # drop listings mentioning "senior"
-	'where': 'amsterdam',                       # location
-	'category': 'it-jobs',                      # only IT jobs
-	'results_per_page': 50,                     # up to 50 results per page
-}
 
-def fetch_jobs():
+def fetch_jobs(what="software developer", where="amsterdam", what_exclude=""):
+	# Build the query: credentials come from .env, search terms from the caller.
+	params = {
+		'app_id': os.getenv('ADZUNA_APP_ID'),   # credentials, kept out of the code in .env
+		'app_key': os.getenv('ADZUNA_APP_KEY'),
+		'what': what,                            # job title to search for
+		'where': where,                          # location
+		'what_exclude': what_exclude,            # words to drop, e.g. "senior"
+		'category': 'it-jobs',                   # only IT jobs
+		'results_per_page': 50,                  # up to 50 results per page
+	}
 	# Ask Adzuna for jobs matching `params`. The trailing /1 is the page number.
 	response = requests.get(
 		'https://api.adzuna.com/v1/api/jobs/nl/search/1',

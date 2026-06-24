@@ -13,6 +13,9 @@ const statusEl = document.getElementById("status") as HTMLParagraphElement;
 const results = document.getElementById("results") as HTMLUListElement;
 const fileInput = document.getElementById("cv-file") as HTMLInputElement;
 const fileName = document.getElementById("file-name") as HTMLSpanElement;
+const whatInput = document.getElementById("what") as HTMLInputElement;
+const whereInput = document.getElementById("where") as HTMLInputElement;
+const excludeInput = document.getElementById("exclude") as HTMLInputElement;
 
 // Show the chosen file's name next to the upload button.
 fileInput.addEventListener("change", () => {
@@ -36,6 +39,9 @@ button.addEventListener("click", async () => {
     // Send the PDF as multipart form data; the field name "cv" matches the backend.
     const formData = new FormData();
     formData.append("cv", file);
+    formData.append("what", whatInput.value);
+    formData.append("where", whereInput.value);
+    formData.append("what_exclude", excludeInput.value);
     const response = await fetch("/matches", { method: "POST", body: formData });
     if (!response.ok) throw new Error(`Server returned ${response.status}`);
     const matches: Match[] = await response.json();

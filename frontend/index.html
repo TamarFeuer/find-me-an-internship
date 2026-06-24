@@ -10,6 +10,20 @@
   <main>
     <h1>Find Me an Internship</h1>
     <p class="intro">Score live job listings against your CV and rank them by fit.</p>
+    <div class="search">
+      <label class="field">
+        <span>Role</span>
+        <input type="text" id="what" value="software developer">
+      </label>
+      <label class="field">
+        <span>Location</span>
+        <input type="text" id="where" value="amsterdam">
+      </label>
+      <label class="field">
+        <span>Exclude words</span>
+        <input type="text" id="exclude" value="senior">
+      </label>
+    </div>
     <div class="controls">
       <label for="cv-file" class="upload-label">Upload your CV as PDF</label>
       <input type="file" id="cv-file" accept="application/pdf" hidden>

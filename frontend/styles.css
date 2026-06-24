@@ -12,6 +12,28 @@ body {
 h1 { margin-bottom: 0.25rem; }
 .intro { color: #666; margin-top: 0; }
 
+.search {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.field span {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+.search input {
+  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
 .controls {
   display: flex;
   gap: 0.75rem;

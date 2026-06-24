@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.staticfiles import StaticFiles
 
 from app.cv import extract_pdf_text
@@ -12,10 +12,15 @@ app = FastAPI(title="find-me-an-internship")
 
 
 @app.post("/matches", response_model=list[Match])
-async def get_matches(cv: UploadFile = File(...)):
+async def get_matches(
+	cv: UploadFile = File(...),
+	what: str = Form("software developer"),
+	where: str = Form("amsterdam"),
+	what_exclude: str = Form("senior"),
+):
 	"""Score an uploaded CV (PDF) against live job listings, ranked best-match first."""
 	cv_text = extract_pdf_text(await cv.read())
-	jobs = fetch_jobs().get("results", [])
+	jobs = fetch_jobs(what=what, where=where, what_exclude=what_exclude).get("results", [])
 	ranked = rank_jobs(cv_text, jobs)
 
 	# Shape each result into just the fields the frontend needs (not the whole Adzuna blob).
