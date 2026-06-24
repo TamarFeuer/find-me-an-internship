@@ -8,7 +8,7 @@ class JobMatch(BaseModel):
 
 
 class Match(BaseModel):
-	"""A job plus its score — the shape the API returns to the frontend."""
+	"""A job plus its score: the shape the API returns to the frontend."""
 	title: str
 	company: str | None
 	location: str | None

@@ -51,7 +51,7 @@ button.addEventListener("click", async () => {
     const matches: Match[] = await response.json();
 
     if (matches.length === 0) {
-      statusEl.textContent = "No jobs found — try a different role, location, or fewer exclude words.";
+      statusEl.textContent = "No jobs found. Try a different role, location, or fewer exclude words.";
       return;
     }
     statusEl.textContent = `${matches.length} jobs scored, best matches first.`;
@@ -62,7 +62,7 @@ button.addEventListener("click", async () => {
         <div class="score">${m.score}</div>
         <div class="info">
           <h2>${m.title}</h2>
-          <p class="meta">${m.company ?? ""} — ${m.location ?? ""}</p>
+          <p class="meta">${m.company ?? ""} | ${m.location ?? ""}</p>
           <p class="explanation">${m.explanation}</p>
           ${m.url ? `<a href="${m.url}" target="_blank" rel="noopener">View listing</a>` : ""}
         </div>`;

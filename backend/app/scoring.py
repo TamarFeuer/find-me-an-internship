@@ -58,7 +58,7 @@ async def score_job(cv_text, job):
         )
 
     # Caching diagnostic: cache_read > 0 means the CV prefix was served from cache.
-    # At a short CV (< ~4096 tokens) this stays 0 on Haiku — caching is dormant.
+    # At a short CV (< ~4096 tokens) this stays 0 on Haiku, caching is dormant.
     usage = response.usage
     print(
         f"  [tokens] full-price={usage.input_tokens} "

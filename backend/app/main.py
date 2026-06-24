@@ -24,7 +24,7 @@ async def get_matches(
 	if not cv_text.strip():
 		raise HTTPException(
 			status_code=400,
-			detail="Couldn't read any text from that PDF — it may be a scanned image. Please upload a text-based PDF.",
+			detail="Couldn't read any text from that PDF. It may be a scanned image. Please upload a text-based PDF.",
 		)
 	jobs = fetch_jobs(what=what, where=where, what_exclude=what_exclude).get("results", [])
 	ranked = await rank_jobs(cv_text, jobs)
