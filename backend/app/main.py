@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from fastapi import FastAPI, File, Form, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.staticfiles import StaticFiles
 
 from app.cv import extract_pdf_text
@@ -20,6 +20,12 @@ async def get_matches(
 ):
 	"""Score an uploaded CV (PDF) against live job listings, ranked best-match first."""
 	cv_text = extract_pdf_text(await cv.read())
+	# A scanned/image-only PDF yields no text; fail clearly instead of scoring an empty CV.
+	if not cv_text.strip():
+		raise HTTPException(
+			status_code=400,
+			detail="Couldn't read any text from that PDF — it may be a scanned image. Please upload a text-based PDF.",
+		)
 	jobs = fetch_jobs(what=what, where=where, what_exclude=what_exclude).get("results", [])
 	ranked = rank_jobs(cv_text, jobs)
 

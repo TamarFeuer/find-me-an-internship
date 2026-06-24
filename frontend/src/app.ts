@@ -1,4 +1,4 @@
-// Mirrors the Match model the backend returns from GET /matches.
+// Mirrors the Match model the backend returns from POST /matches.
 interface Match {
   title: string;
   company: string | null;
@@ -43,9 +43,17 @@ button.addEventListener("click", async () => {
     formData.append("where", whereInput.value);
     formData.append("what_exclude", excludeInput.value);
     const response = await fetch("/matches", { method: "POST", body: formData });
-    if (!response.ok) throw new Error(`Server returned ${response.status}`);
+    if (!response.ok) {
+      // FastAPI puts the error message in `detail` (e.g. the bad-PDF message).
+      const errBody = await response.json().catch(() => null);
+      throw new Error(errBody?.detail ?? `Server returned ${response.status}`);
+    }
     const matches: Match[] = await response.json();
 
+    if (matches.length === 0) {
+      statusEl.textContent = "No jobs found — try a different role, location, or fewer exclude words.";
+      return;
+    }
     statusEl.textContent = `${matches.length} jobs scored, best matches first.`;
     for (const m of matches) {
       const li = document.createElement("li");
@@ -61,7 +69,7 @@ button.addEventListener("click", async () => {
       results.appendChild(li);
     }
   } catch (err) {
-    statusEl.textContent = `Something went wrong: ${(err as Error).message}`;
+    statusEl.textContent = (err as Error).message;
   } finally {
     button.disabled = false;
   }
