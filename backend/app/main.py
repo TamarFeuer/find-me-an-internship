@@ -27,7 +27,7 @@ async def get_matches(
 			detail="Couldn't read any text from that PDF — it may be a scanned image. Please upload a text-based PDF.",
 		)
 	jobs = fetch_jobs(what=what, where=where, what_exclude=what_exclude).get("results", [])
-	ranked = rank_jobs(cv_text, jobs)
+	ranked = await rank_jobs(cv_text, jobs)
 
 	# Shape each result into just the fields the frontend needs (not the whole Adzuna blob).
 	return [
