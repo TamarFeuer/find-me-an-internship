@@ -1,0 +1,5 @@
+# Dependencies
+node_modules/
+
+# Compiled TypeScript output (generated from src/ by tsc)
+dist/
