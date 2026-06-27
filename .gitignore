@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Intern company data (contains real referral handles - personal data, keep local).
+# The .example version is committed to document the format.
+backend/data/intern_companies.csv

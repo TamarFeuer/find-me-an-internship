@@ -1,0 +1,4 @@
+company_name,referral,start_at,end_at
+Example Company B.V.,jdoe,2025-01-01 00:00:00 +0100,2025-06-30 00:00:00 +0200
+Example Company B.V.,asmith,2024-09-01 00:00:00 +0200,2025-02-28 00:00:00 +0100
+Another Startup,kjansen,2025-03-01 00:00:00 +0100,2025-09-01 00:00:00 +0200

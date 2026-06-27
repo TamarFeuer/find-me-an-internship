@@ -74,3 +74,70 @@ button.addEventListener("click", async () => {
     button.disabled = false;
   }
 });
+
+// --- Company list tab ---
+
+// Mirrors the Company model the backend returns from GET /companies.
+interface Company {
+  name: string;
+  intern_count: number;
+  latest_start: string;
+  referrals: string[];
+}
+
+const tabMatch = document.getElementById("tab-match") as HTMLButtonElement;
+const tabCompanies = document.getElementById("tab-companies") as HTMLButtonElement;
+const matchView = document.getElementById("match-view") as HTMLElement;
+const companiesView = document.getElementById("companies-view") as HTMLElement;
+const companyList = document.getElementById("company-list") as HTMLUListElement;
+
+let companiesLoaded = false;
+
+tabMatch.addEventListener("click", () => {
+  tabMatch.classList.add("active");
+  tabCompanies.classList.remove("active");
+  matchView.hidden = false;
+  companiesView.hidden = true;
+});
+
+tabCompanies.addEventListener("click", async () => {
+  tabCompanies.classList.add("active");
+  tabMatch.classList.remove("active");
+  companiesView.hidden = false;
+  matchView.hidden = true;
+  // Load the directory the first time the tab is opened (free - just reads a local CSV).
+  if (!companiesLoaded) {
+    await loadCompanies();
+    companiesLoaded = true;
+  }
+});
+
+async function loadCompanies() {
+  companyList.innerHTML = "<li>Loading…</li>";
+  try {
+    const response = await fetch("/companies");
+    if (!response.ok) {
+      // e.g. the "add intern_companies.csv" message when the data file is missing.
+      const errBody = await response.json().catch(() => null);
+      throw new Error(errBody?.detail ?? `Server returned ${response.status}`);
+    }
+    const companies: Company[] = await response.json();
+
+    companyList.innerHTML = "";
+    for (const c of companies) {
+      const plural = c.intern_count === 1 ? "intern" : "interns";
+      const li = document.createElement("li");
+      li.className = "card";
+      li.innerHTML = `
+        <div class="score">${c.intern_count}</div>
+        <div class="info">
+          <h2>${c.name}</h2>
+          <p class="meta">${c.intern_count} Codam ${plural} | latest ${c.latest_start}</p>
+          <p class="explanation">Referrals: ${c.referrals.join(", ")}</p>
+        </div>`;
+      companyList.appendChild(li);
+    }
+  } catch (err) {
+    companyList.innerHTML = `<li>${(err as Error).message}</li>`;
+  }
+}

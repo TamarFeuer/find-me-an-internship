@@ -15,3 +15,11 @@ class Match(BaseModel):
 	url: str | None
 	score: int
 	explanation: str
+
+
+class Company(BaseModel):
+	"""A Codam-intern company: intern count, recency, and referral contacts (intraIDs)."""
+	name: str
+	intern_count: int
+	latest_start: str
+	referrals: list[str]

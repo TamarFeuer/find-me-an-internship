@@ -4,8 +4,9 @@ from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.staticfiles import StaticFiles
 
 from app.cv import extract_pdf_text
-from app.models import Match
+from app.models import Company, Match
 from app.adzuna import fetch_jobs
+from app.companies import DATA_FILE, load_companies
 from app.scoring import rank_jobs
 
 app = FastAPI(title="find-me-an-internship")
@@ -41,6 +42,17 @@ async def get_matches(
 		)
 		for match, job in ranked
 	]
+
+
+@app.get("/companies", response_model=list[Company])
+def get_companies():
+	"""Companies ranked by intern count, with referral contacts (reads a local CSV - no API calls)."""
+	if not DATA_FILE.exists():
+		raise HTTPException(
+			status_code=404,
+			detail="No company data found. Add backend/data/intern_companies.csv (copy intern_companies.example.csv).",
+		)
+	return load_companies()
 
 
 # Serve the frontend (index.html, app.js, styles.css) at the root, same-origin

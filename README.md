@@ -18,6 +18,30 @@ How it works, end to end:
    fit score and a one-line explanation per job.
 5. The scored jobs are ranked best-first and shown as cards in the browser.
 
+## Company directory
+
+Adzuna mostly surfaces recruitment agencies, so the app has a second tab,
+**Company list**: a directory of companies known to hire interns, loaded from
+a CSV you provide. Each company is ranked by how many interns it has hosted, and
+lists past interns as referral contacts (handles you can reach out to for a warm
+intro).
+
+This is handy when your school publishes a list of where its students have
+interned. Codam, for example, provides such a list to its students, which drops
+straight in (see the setup step below).
+
+### Checking who is currently hiring
+
+The directory tells you which companies take interns and who to ask, but not
+whether they have an opening right now (there is no clean API for that). The
+simplest approach is to take a shortlist from the directory and ask Claude
+(claude.ai, with web search) to check their career pages, for example:
+
+> Check which of these companies are currently hiring software interns in the Netherlands. Look at their career pages.
+
+Give it a shortlist (say 10-20 companies) rather than the whole list, so it can
+check each one properly.
+
 ## Tech stack
 
 | Part | Technology |
@@ -81,7 +105,20 @@ npm install
 npm run build      # compiles src/app.ts to dist/app.js
 ```
 
-### 4. Run the app
+### 4. (Optional) Add the company-directory data
+
+The **Company list** tab reads `backend/data/intern_companies.csv`, which is
+gitignored because it holds real referral handles (personal data). Copy the
+example to start, or drop in your own export:
+
+```bash
+cp backend/data/intern_companies.example.csv backend/data/intern_companies.csv
+```
+
+The CSV needs `company_name`, a referral column (named `referral` or `intraID`),
+`start_at`, and `end_at`. A Codam internship export works as-is.
+
+### 5. Run the app
 
 ```bash
 cd backend
